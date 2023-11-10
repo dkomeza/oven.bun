@@ -1,1 +1,3 @@
-console.log("Hello via Bun!");
+import Oven from "./src/oven";
+
+export default Oven;
