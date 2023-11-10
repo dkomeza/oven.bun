@@ -7,6 +7,16 @@ interface OvenInterface {
 class Oven {
   private server: Server;
 
+  /**
+   * Creates a new Oven instance and starts the server.
+   * @param params Oven parameters.
+   * @param params.port Port to listen on (default: 5000).
+   * @returns Oven instance.
+   * @example
+   * const oven = new Oven({ port: 5000 });
+   * @example
+   * const oven = new Oven();
+   */
   constructor(params: OvenInterface = {}) {
     this.server = Bun.serve({
       port: params.port || 5000,
@@ -14,6 +24,11 @@ class Oven {
     });
   }
 
+  /**
+   * Stops the server.
+   * @example
+   * oven.stop();
+   */
   public stop(): void {
     this.server.stop();
   }
