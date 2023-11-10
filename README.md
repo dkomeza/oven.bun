@@ -1,2 +1,2 @@
 # oven.bun
-A dedicated Bun web framework
+A simple, lightweight, and easy to use web framework made for Bun.
