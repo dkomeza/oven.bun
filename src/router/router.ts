@@ -1,7 +1,21 @@
 type Callback = (req: Request) => Response | Promise<Response>;
 
 class Router {
-    routes: { [key: string]: any } = {};
+    private routes: { [key: string]: any } = {};
+
+    public get(path: string, callback: Callback): void {
+        const { regex, priority } = this.createRegex(path);
+
+        if (this.routes[regex]) {
+            this.routes[regex].get = callback;
+            return;
+        }
+
+        const route = new Route(path, priority);
+        route.get = callback;
+        
+        this.routes[regex] = route;
+    }
 
     private createRegex(path: string): { regex: string, priority: number[]} {
         const pathArray = path.split("/").filter((item) => item !== "");
