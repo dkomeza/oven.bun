@@ -132,3 +132,6 @@ dist
 
 # MacOS files
 .DS_Store
+
+.helper-config/
+.helper-config
