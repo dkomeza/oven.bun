@@ -30,7 +30,7 @@ class Oven {
    * oven.stop();
    */
   public stop(): void {
-    this.server.stop();
+    this.server.stop(true);
   }
 
   private async handle(request: Request, server: Server): Promise<Response> {
