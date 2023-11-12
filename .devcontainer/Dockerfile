@@ -33,6 +33,3 @@ RUN npm install -g tiny-git-helper
 # Add tgh config folder
 ADD .devcontainer/.helper-config /home/vscode/.helper-config
 RUN chown -R vscode:vscode /home/vscode/.helper-config
-
-# Forward port 5000
-EXPOSE 5000
