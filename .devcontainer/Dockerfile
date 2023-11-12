@@ -20,16 +20,12 @@ RUN source $NVM_DIR/nvm.sh \
 ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
 ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
-# confirm installation
-RUN node -v
-RUN npm -v
-
 # Install git
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends git
 
-# Install bun
-RUN curl -fsSL https://bun.sh/install | bash
+# Install bun and add it to path
+RUN npm install -g bun
 
 # Install tiny-git-helper
 RUN npm install -g tiny-git-helper
