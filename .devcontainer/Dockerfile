@@ -34,15 +34,6 @@ RUN curl -fsSL https://bun.sh/install | bash
 # Install tiny-git-helper
 RUN npm install -g tiny-git-helper
 
-# Install zsh
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends zsh
-
-# Install oh-my-zsh
-RUN rm -rf ~/.oh-my-zsh && \
-    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-
 # Add tgh config folder
 ADD .devcontainer/.helper-config /home/vscode/.helper-config
 RUN chown -R vscode:vscode /home/vscode/.helper-config
