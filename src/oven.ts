@@ -14,6 +14,7 @@ class Oven {
    * Creates a new Oven instance and starts the server.
    * @param params Oven parameters.
    * @param params.port Port to listen on (default: 5000).
+   * @param params.router Enable router (default: true).
    * @returns Oven instance.
    * @example
    * const oven = new Oven({ port: 5000 });
@@ -26,7 +27,7 @@ class Oven {
       fetch: this.handle,
     });
 
-    if (!params.router) {
+    if (params.router !== false) {
       this.router = new Router();
     }
   }
