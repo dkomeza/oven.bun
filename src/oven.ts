@@ -24,12 +24,12 @@ class Oven {
   constructor(params: OvenInterface = {}) {
     this.server = Bun.serve({
       port: params.port || 5000,
-      fetch: this.handle,
+      fetch: this.handle.bind(this),
     });
 
-    if (params.router !== false) {
-      this.router = new Router();
-    }
+    // if (params.router !== false) {
+    this.router = new Router();
+    // }
   }
 
   /**
@@ -61,7 +61,11 @@ class Oven {
   }
 
   private async handle(request: Request, server: Server): Promise<Response> {
-    return new Response("Hello via Bun!");
+    if (!this.router) {
+      throw new Error("Router is not enabled.");
+    }
+
+    return this.router!.handle(request);
   }
 }
 
