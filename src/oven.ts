@@ -32,6 +32,17 @@ class Oven {
     }
   }
 
+  /**
+   *  Registers a GET route.
+   * @param path Path to register. Supports parameters and wildcards.
+   * @param callback Callback to execute when the route is requested.
+   * @example
+   * oven.get("/", (req) => new Response("Hello World!"));
+   * @example
+   * oven.get("/:name", (req) => new Response(`Hello ${req.params.name}!`));
+   * @example
+   * oven.get("/hello/*", (req) => new Response(`Hello World!`));
+   */
   public get(path: string, callback: Callback): void {
     if (!this.router) {
       throw new Error("Router is not enabled.");
