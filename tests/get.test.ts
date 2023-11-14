@@ -60,3 +60,22 @@ test("Should throw a 404 on non-existing routes", async () => {
 
   oven.stop();
 });
+
+test("Should prioritize strict routes over wildcards", async () => {
+  const oven = new Oven();
+
+  oven.get("/hello/world", (req) => {
+    return new Response("Hello World!");
+  });
+
+  oven.get("/hello/*", (req) => {
+    return new Response("Hello Wildcard!");
+  });
+
+  const response = await fetch("http://localhost:5000/hello/world");
+  const text = await response.text();
+
+  expect(text).toBe("Hello World!");
+
+  oven.stop();
+});

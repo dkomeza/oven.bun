@@ -104,11 +104,11 @@ class Router {
 
     routes.sort((a, b) => {
       if (a.priority[priorityIndex] > b.priority[priorityIndex]) {
-        return -1;
+        return 1;
       }
 
       if (a.priority[priorityIndex] < b.priority[priorityIndex]) {
-        return 1;
+        return -1;
       }
 
       return 0;
