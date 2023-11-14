@@ -1,11 +1,14 @@
 import { Server } from "bun";
+import Router, { Callback } from "./router/router";
 
 interface OvenInterface {
   port?: number;
+  router?: boolean;
 }
 
 class Oven {
   private server: Server;
+  private router: Router | undefined;
 
   /**
    * Creates a new Oven instance and starts the server.
@@ -22,6 +25,18 @@ class Oven {
       port: params.port || 5000,
       fetch: this.handle,
     });
+
+    if (!params.router) {
+      this.router = new Router();
+    }
+  }
+
+  public get(path: string, callback: Callback): void {
+    if (!this.router) {
+      throw new Error("Router is not enabled.");
+    }
+
+    this.router.get(path, callback);
   }
 
   /**
